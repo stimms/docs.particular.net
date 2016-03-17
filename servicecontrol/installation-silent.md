@@ -106,7 +106,7 @@ The unattended file does not cover all the settings available to customize the o
 The following PowerShell script shows a simple way to script the modification of some of the optional configuration settings. The provided script makes use of the ServiceControl Management PowerShell module shipped with v1.7 to find the configuration file locations.
 
 
-Prior to using the script modify the `$customSettings` hash table to reflect the key/value pairs you which to set.
+Prior to using the script modify the `$customSettings` hash table to reflect the key/value pairs you wish to set.
 The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings.
 
 ```powershell
@@ -118,7 +118,6 @@ Import-Module 'C:\Program Files (x86)\Particular Software\ServiceControl Managem
 
 $customSettings = @{
     'ServiceControl/HeartbeatGracePeriod'='00:01:30'  
-    'ServiceControl/HoursToKeepMessagesBeforeExpiring'='120' 
 }
 
 foreach ($sc in Get-ServiceControlInstances)
