@@ -36,7 +36,7 @@
             #endregion
         }
 
-        /**
+        /*
 
         void DisableCallbackReceiver(EndpointConfiguration endpointConfiguration)
         {
@@ -47,12 +47,11 @@
             #endregion
         }
 
-
+        */
         void CallbackReceiverMaxConcurrency(EndpointConfiguration endpointConfiguration)
         {
             #region rabbitmq-config-callbackreceiver-thread-count
-            endpointConfiguration.UseTransport<RabbitMQTransport>()
-                .CallbackReceiverMaxConcurrency(10);
+            endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
 
             #endregion
         }
@@ -73,7 +72,7 @@
 
             #endregion
         }
-    **/
+    
 
         void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
         {
@@ -105,6 +104,16 @@
 
             endpointConfiguration.UseTransport<RabbitMQTransport>()
                 .UseRoutingTopology<MyRoutingTopology>();
+
+            #endregion
+        }
+
+        void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
+        {
+            #region rabbitmq-custom-breaker-settings-code
+
+            endpointConfiguration.UseTransport<RabbitMQTransport>()
+                .TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
 
             #endregion
         }
